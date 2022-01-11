@@ -15,6 +15,11 @@ A small introduction and couple of programs / demos for the ZX Spectrum.
     bin2tap first.bin
 
 ## Useful Links
+* [https://manpages.debian.org/stretch/fuse-emulator-utils/fuse-utils.1.en.html](https://manpages.debian.org/stretch/fuse-emulator-utils/fuse-utils.1.en.html)
+* [http://www.computinghistory.org.uk/det/424/Sinclair-ZX-Spectrum-48k/](http://www.computinghistory.org.uk/det/424/Sinclair-ZX-Spectrum-48k/)
+* [https://worldofspectrum.org/ZXBasicManual/zxmanchap1.html](https://worldofspectrum.org/ZXBasicManual/zxmanchap1.html)
+* [http://pasmo.speccy.org/](http://pasmo.speccy.org/)
+* [https://sourceforge.net/projects/zxspectrumutils/](https://sourceforge.net/projects/zxspectrumutils/)
 * [https://www.chibiakumas.com/z80/helloworld.php#LessonH2](https://www.chibiakumas.com/z80/helloworld.php#LessonH2)
 * [http://fuse-emulator.sourceforge.net/](http://fuse-emulator.sourceforge.net/)
 * [https://github.com/boriel/zxbasic](https://github.com/boriel/zxbasic)
