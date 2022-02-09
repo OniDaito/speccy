@@ -6,12 +6,14 @@ BIN2TAP_PATH=/home/oni/Projects/bin2tap
 
 #$VASM_PATH/vasmz80_oldstyle -chklabels -nocase -Dvasm=1 -DBuildZXS=1 -DBuildZXS_TRD=1 -Fbin -i first.asm -o first.bin
 
-$PASMO_PATH/pasmo -d -v --bin hello.asm hello.bin
-$PASMO_PATH/pasmo -d -v --bin bitmap.asm bitmap.bin
+#$PASMO_PATH/pasmo -d -v --bin hello.asm ./build/hello.bin
+#$PASMO_PATH/pasmo -d -v --bin screen.asm ./build/screen.bin
+$PASMO_PATH/pasmo -d -v --bin bitmap.asm ./build/bitmap.bin
 
 # Build the tap files for tape emulations
-$BIN2TAP_PATH/bin2tap -b -cp 1 hello.bin -c 28672 -o hello.tap
-$BIN2TAP_PATH/bin2tap -b bitmap.bin -o bitmap.tap
+#$BIN2TAP_PATH/bin2tap -b -cp 1 ./build/hello.bin -c 28672 -o ./build/hello.tap
+#$BIN2TAP_PATH/bin2tap -b ./build/screen.bin -o ./build/screen.tap
+$BIN2TAP_PATH/bin2tap -b ./build/bitmap.bin -o ./build/bitmap.tap
 
 # Previously, I appended the loader.bas bin file to the front of
 # the loader tap but it didn't always work

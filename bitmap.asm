@@ -1,48 +1,57 @@
 ; A bitmap test program
 org $8000
 
-ScreenInit:
-ifndef ScrColour16
-  ld a, 1
-else
-  ld a, 0
-endif
-call &BC0E
+include "./lib/constants.asm"
 
-  ld de, &0010           ; Xpos in pixels
-  ld hl, &00A0           ; Ypos in pixels
+start
+    ld a, black | white | bright
+    ; call cls_attributes
+    call draw_invader
 
-  call &BC1D            ; screen dot position
+test
+    ld hl, 0x4000     ; Screen memory load into hl
+    ld (hl), 0xff     ; load ff into screen mem
+    ld de, 0x4001     ; load the next byte address of screen mem into de
+    ld bc, 31         ; something something 1 byte copy
+    ldir              ; something copy byte in hl to de's location
+    ret
 
-  ld de, TestSprite      ; Load the sprite
-  ld b, 8                ; lines
+; This sets attributes for the whole screen
+; looks like this ldir bc de trick copies a value multiple times.
+cls_attributes:        
+    ld hl, attr_start               ; start at attribute start
+    ld de, attr_start + 1           ; copy to next address in attributes
+    ld bc, attributes_length - 1    ; 'loop' attribute size minus 1 times
+    ld (hl), a                      ; initialize the first attribute
+    ldir                            ; fill the attributes
+    ret
 
-SpriteNextLine:
-  push hl
-    ld a, (de)           ; Source byte
-    ld (hl), a           ; Screen destination
 
-    inc de              ; increment sprite address
-    inc hl              ; increment screen address
+include "./lib/upde.asm"
 
-    ld a, (de)
-    ld (hl), a 
-
-    inc de
-    inc hl
-  pop hl
-  call &BC26            ; screen next line
-
-  djnz SpriteNextLine
-
-  ret
-
-TestSprite:
-    db %00110000,%11000000
-    db %01110000,%11100000
-    db %11110010,%11110100
-    db %11110000,%11110000
-    db %11110000,%11110000
-    db %11010010,%10110100
-    db %01100001,%01101000
-    db %00110000,%11000000
+draw_invader:
+    ld hl, 0x4000
+    ld (hl), 24
+    ld de, 0x4000
+    call upde
+    ld a, 60
+    ld (de), a
+    call upde
+    ld a, 126
+    ld (de), a
+    call upde
+    ld a, 219
+    ld (de), a
+    call upde
+    ld a, 255
+    ld (de), a
+    call upde
+    ld a, 90
+    ld (de), a
+    call upde
+    ld a, 129
+    ld (de), a
+    call upde
+    ld a, 68
+    ld (de), a
+    
