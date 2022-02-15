@@ -8,11 +8,13 @@ BIN2TAP_PATH=/home/oni/Projects/bin2tap
 
 #$PASMO_PATH/pasmo -d -v --bin hello.asm ./build/hello.bin
 #$PASMO_PATH/pasmo -d -v --bin screen.asm ./build/screen.bin
+#$PASMO_PATH/pasmo -d -v --bin bitmap.asm ./build/invader.bin
 $PASMO_PATH/pasmo -d -v --bin bitmap.asm ./build/bitmap.bin
 
 # Build the tap files for tape emulations
 #$BIN2TAP_PATH/bin2tap -b -cp 1 ./build/hello.bin -c 28672 -o ./build/hello.tap
 #$BIN2TAP_PATH/bin2tap -b ./build/screen.bin -o ./build/screen.tap
+#$BIN2TAP_PATH/bin2tap -b ./build/bitmap.bin -o ./build/invader.tap
 $BIN2TAP_PATH/bin2tap -b ./build/bitmap.bin -o ./build/bitmap.tap
 
 # Previously, I appended the loader.bas bin file to the front of

@@ -15,6 +15,8 @@ A small introduction and couple of programs / demos for the ZX Spectrum.
     bin2tap first.bin
 
 ## Useful Links
+*[http://www.breakintoprogram.co.uk/computers/zx-spectrum/memory-map](http://www.breakintoprogram.co.uk/computers/zx-spectrum/memory-map) - Speccy memory map
+*[http://www.breakintoprogram.co.uk/computers/zx-spectrum/assembly-language/z80-development-toolchain](http://www.breakintoprogram.co.uk/computers/zx-spectrum/assembly-language/z80-development-toolchain)
 *[http://www.breakintoprogram.co.uk/computers/zx-spectrum/assembly-language](http://www.breakintoprogram.co.uk/computers/zx-spectrum/assembly-language) - a set of useful routines256
 *[https://github.com/Dotneteer/spectnetide](https://github.com/Dotneteer/spectnetide)
 *[https://www.chibiakumas.com/z80/multiplatform.php](https://www.chibiakumas.com/z80/multiplatform.php) - some potentially handy debugging routines.
