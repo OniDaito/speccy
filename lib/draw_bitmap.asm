@@ -3,9 +3,9 @@ draw_bitmap:
     ; this little function - p82 of machine language speccy book
     ; Or posibly better, copying our hello-world asm
     ld bc, image_you
-
     ; We need to do two things. One, figure out when to move to the next line and 
     ; two, when to stop drawing fully. We will need two counters I expect
+    push de
 loop_draw_bitmap:
     ; read the x pos and subtract. Call next line if needed
     ld a, (image_you_x)
@@ -22,6 +22,7 @@ loop_draw_bitmap:
     jr loop_draw_bitmap
 next_line:
     ; take the saved width and reset the x counter
+    pop de
     ld a, (image_you_width)
     ld (image_you_x), a
     ; Now check that y isn't 0
@@ -36,4 +37,5 @@ next_line:
     call upde
     pop bc
     inc bc
+    push de
     jr loop_draw_bitmap
