@@ -6,7 +6,18 @@ include "./lib/constants.asm"
 start
     ld a, black | white | bright
     call cls_attributes
-    ld de, 0x4000 ; load de with our first line position
+    ; Set all the memory locations for drawing an image
+    ld a, (image_you_width)
+    ld (image_width), a
+    ld a, (image_you_height)
+    ld (image_height), a
+    ld a, (image_you_x)
+    ld (image_x), a
+    ld a, (image_you_y)
+    ld (image_y), a
+    ld de, 0x4000 ; load de with the screen memory positions first
+    ld bc, image_you ; load the bc with the image data
+    ; Now make the call
     call draw_bitmap
     ret
 

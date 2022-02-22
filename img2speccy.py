@@ -1,6 +1,16 @@
 '''
 Convert an image to ZX Spectrum format
 
+http://www.breakintoprogram.co.uk/computers/zx-spectrum/screen-memory-layout
+
+The Spectrum screen memory map is split into two sections:
+
+    6144 bytes worth of bitmap data, starting at memory address &4000
+    768 byte colour attribute data, immediately after the bitmap data at address &5800
+
+The bitmap data starts at address &4000 and consists of 192 lines of 32 bytes.
+Pixels are encoded as bits; 32 x 8 gives the horizontal resolution of 256 pixels.
+
 Usage: python3 img2speccy.py --name test images/white.png > images/test.asm
 
 image_you: ; 53 x 31 pixels. That's 7 blocks wide and 31 lines down
@@ -15,7 +25,6 @@ image_you_y:
     defb 31
 
 '''
-
 
 from PIL import Image
 import math
@@ -42,6 +51,10 @@ for y in range(img.height):
     if img.width % 8 != 0:
         width += 8
 
+    # Make it an even number of blocks
+    if (width / 8) % 2 != 0:
+        width += 8
+
     for x in range(0, width, 8):
         block = 0
         for b in range(8):
@@ -51,26 +64,20 @@ for y in range(img.height):
                 val, _, _ = img.getpixel((x + b, y))
            
             if val != 0:
-                block = block | (1 << b)
+                block = block | (1 << 7-b)
 
         blocks.append(block)
-    blocks_reordered = []
-
-    # Swapping over bytes in pairs - reordering the 16 bits seems to work on the speccy
-    # at least for the most part.
-    for bidx in range(0, len(blocks), 2):
-        if bidx+1 < len(blocks):
-            blocks_reordered.append(blocks[bidx+1])
-        blocks_reordered.append(blocks[bidx])
-     
-    for block in blocks_reordered:
+    
+    for block in blocks:
         img_str += str(hex(block)) + ", "
 
 img_str = img_str[:-2]
-img_str += "\nimage_" + name + "_width:\n    defb " + str(int(math.ceil(img.width / 8))) + "\n"
+img_str += "\nimage_" + name + "_width:\n    defb " + str(len(blocks)) + "\n"
 img_str += "image_" + name + "_height:\n    defb " + str(int(img.height)) + "\n"
-img_str += "image_" + name + "_x:\n    defb " + str(int(math.ceil(img.width / 8))) + "\n"
+img_str += "image_" + name + "_x:\n    defb " + str(len(blocks)) + "\n"
 img_str += "image_" + name + "_y:\n    defb " + str(int(img.height)) + "\n"
+img_str += "image_" + name + "_offx:\n    defb " + str(0) + "\n"
+img_str += "image_" + name + "_offy:\n    defb " + str(0) + "\n"
 
 print(img_str)
 
