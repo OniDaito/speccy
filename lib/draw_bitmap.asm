@@ -6,9 +6,33 @@ image_x:
     defb 0
 image_y:
     defb 0
+image_offx:
+    defb 0
+image_offy:
+    defb 0
+draw_set_pos:
+    ; Call this first to set DE to the correct drawing position.
+    ; TODO could be a bug here if offx is 0 to begin with
+    ld a, (image_offx)
+loop_offx:
+    inc de
+    sub 1
+    cp 0
+    jr nz, loop_offx
+    ld a, (image_offy)
+    ; Now loop through the y offset
+    ; upde uses the accumulator so we must be a bit more clever with offy loop
+    ; TODO we always go one line down first. Naughty but easier :/
+loop_offy:
+    push af
+    call upde
+    pop af
+    sub 1
+    cp 0
+    jr nz, loop_offy
+    ret
 draw_bitmap:
-    ; We need to do two things. One, figure out when to move to the next line and 
-    ; two, when to stop drawing fully. We will need two counters I expect
+    ; Now we have our final start position in de so push it
     push de
 loop_draw_bitmap:
     ; read the x pos and subtract. Call next line if needed

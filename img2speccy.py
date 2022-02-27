@@ -76,8 +76,6 @@ img_str += "\nimage_" + name + "_width:\n    defb " + str(len(blocks)) + "\n"
 img_str += "image_" + name + "_height:\n    defb " + str(int(img.height)) + "\n"
 img_str += "image_" + name + "_x:\n    defb " + str(len(blocks)) + "\n"
 img_str += "image_" + name + "_y:\n    defb " + str(int(img.height)) + "\n"
-img_str += "image_" + name + "_offx:\n    defb " + str(0) + "\n"
-img_str += "image_" + name + "_offy:\n    defb " + str(0) + "\n"
 
 print(img_str)
 

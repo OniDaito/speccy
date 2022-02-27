@@ -15,7 +15,12 @@ start
     ld (image_x), a
     ld a, (image_you_y)
     ld (image_y), a
+    ld a, 4 ; offset in X in blocks
+    ld (image_offx), a
+    ld a, 150
+    ld (image_offy), a ; offset in Y in lines
     ld de, 0x4000 ; load de with the screen memory positions first
+    call draw_set_pos
     ld bc, image_you ; load the bc with the image data
     ; Now make the call
     call draw_bitmap

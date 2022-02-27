@@ -8,8 +8,4 @@ image_you_x:
     defb 8
 image_you_y:
     defb 31
-image_you_offx:
-    defb 1
-image_you_offy:
-    defb 10
 
