@@ -4,24 +4,24 @@ org $8000
 include "./lib/constants.asm"
 
 start
-    ld a, black | white | bright
+    ld a, black | blue | bright
     call cls_attributes
     ; Set all the memory locations for drawing an image
-    ld a, (image_you_width)
+    ld a, (image_horace_width)
     ld (image_width), a
-    ld a, (image_you_height)
+    ld a, (image_horace_height)
     ld (image_height), a
-    ld a, (image_you_x)
+    ld a, (image_horace_x)
     ld (image_x), a
-    ld a, (image_you_y)
+    ld a, (image_horace_y)
     ld (image_y), a
-    ld a, 4 ; offset in X in blocks
+    ld a, 8 ; offset in X in blocks
     ld (image_offx), a
-    ld a, 150
+    ld a, 55
     ld (image_offy), a ; offset in Y in lines
     ld de, 0x4000 ; load de with the screen memory positions first
     call draw_set_pos
-    ld bc, image_you ; load the bc with the image data
+    ld bc, image_horace ; load the bc with the image data
     ; Now make the call
     call draw_bitmap
     ret
@@ -39,4 +39,4 @@ cls_attributes:
 
 include "./lib/upde.asm"
 include "./lib/draw_bitmap.asm"
-include "./images/you.asm"
+include "./images/horace.asm"

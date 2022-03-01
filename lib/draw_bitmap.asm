@@ -35,6 +35,11 @@ draw_bitmap:
     ; Now we have our final start position in de so push it
     push de
 loop_draw_bitmap:
+    ; Now draw the next block of 8 pixels
+    ld a, (bc)
+    ld (de), a
+    inc bc
+    inc de
     ; read the x pos and subtract. Call next line if needed
     ld a, (image_x)
     sub 1
@@ -42,11 +47,6 @@ loop_draw_bitmap:
     jr z, next_line
     ; write the xpos back to memory
     ld (image_x), a
-    ; Now draw the next block of 8 pixels
-    ld a, (bc)
-    ld (de), a
-    inc bc
-    inc de
     jr loop_draw_bitmap
 next_line:
     ; take the saved width and reset the x counter
@@ -64,6 +64,5 @@ next_line:
     push bc
     call upde
     pop bc
-    inc bc
     push de
     jr loop_draw_bitmap

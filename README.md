@@ -14,6 +14,11 @@ A small introduction and couple of programs / demos for the ZX Spectrum.
     vasmz80_oldstyle -chklabels -nocase -Dvasm=1 -DBuildZXS=1 -DBuildZXS_TRD=1 -Fbin -i ~/Projects/speccy/first.asm -o ~/Projects/speccy/first.bin
     bin2tap first.bin
 
+## Converting images to ASM
+Lossless compression PNGs seem best. JPGs less good.
+
+    python3 img2speccy.py --name horace images/horace.png > images/horace.asm
+
 ## Useful Links
 *[http://www.breakintoprogram.co.uk/computers/zx-spectrum/memory-map](http://www.breakintoprogram.co.uk/computers/zx-spectrum/memory-map) - Speccy memory map
 *[http://www.breakintoprogram.co.uk/computers/zx-spectrum/assembly-language/z80-development-toolchain](http://www.breakintoprogram.co.uk/computers/zx-spectrum/assembly-language/z80-development-toolchain)
