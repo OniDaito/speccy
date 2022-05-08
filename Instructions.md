@@ -2,6 +2,8 @@
 
 Taken from 'Mastering Machine Code on your ZX Spectrum'
 
+#TODO - we've missed ADD
+
 ## BIT
 The form of this instruction is BIT n,r where n is a number between zero and seven. The instruction alters the zero flag (only) according to the current value of the bit in question. If the bit is zero then the zero flag will be set, otherwise the zero flag will be reset. You can exploit this using instructions like JR Z (which will jump if the bit was zero) or RET NZ (which
 will return if the bit was non-zero). BIT does not alter the value of any of the registers, nor does it change the value of the carry flag. It is a two byte instruction. I tend to find it‟s not used all that often, but that when it is used it comes in very handy indeed.

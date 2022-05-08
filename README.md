@@ -46,6 +46,7 @@ Lossless compression PNGs seem best. JPGs less good. This python script relies o
 
 The following is a collection of links (or credits) to sites I found helpful when learning about the ZX Spectrum.
 
+* [https://chuntey.wordpress.com/2013/02/28/how-to-write-zx-spectrum-games-chapter-3/](https://chuntey.wordpress.com/2013/02/28/how-to-write-zx-spectrum-games-chapter-3/) - How to do notes with the beeper
 * [https://spectrumcomputing.co.uk/entry/2000076/Book/The_Complete_Spectrum_ROM_Disassembly](https://spectrumcomputing.co.uk/entry/2000076/Book/The_Complete_Spectrum_ROM_Disassembly) - The complete Spectrum ROM Disassembly book.
 * [https://www.spectrumcomputing.co.uk/index.php?cat=96&id=2000237](https://www.spectrumcomputing.co.uk/index.php?cat=96&id=2000237) - Mastering Machine Code on your ZX Spectrum. One of the better books.
 * [https://github.com/gasman/spectrum-sizecoding](https://github.com/gasman/spectrum-sizecoding) - Gasman's great collection of useful assembly routines.
