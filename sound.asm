@@ -60,10 +60,13 @@ noise4:
     jr nz,noise3
     jr noise2
 
+; Play a set of notes from memory
 play_song:
+	; Set hl to be the address of the start of the song
+	; Save this address in song address
 	ld hl, song_notes
 	ld (song_address), hl
-
+play_song_loop:
 	; Load the first note into the two bytes
 	ld hl,(song_address)
 	ld a,(hl)
@@ -80,29 +83,13 @@ play_song:
 	ld (song_current_duration), a
 	ld a, 0
 	ld (song_current_duration+1), a
+	; store hl back into song address
+	inc hl
+	ld (song_address), hl
 	
-play_song_loop:
 	ld hl, (song_current_note)
 	ld de, (song_current_duration) ;(song_address_duration)
 	call 949
-
-	; Now advance
-	; Load the first note into the two bytes
-	inc hl
-	ld a,(hl)
-	ld (song_current_note), a
-	
-	; Second note byte
-	inc hl
-	ld a, (hl)
-	ld (song_current_note+1), a
-
-	; Load the duration two bytes
-	inc hl
-	ld a, (hl)
-	ld (song_current_duration), a
-	ld a, 0
-	ld (song_current_duration+1), a
 
 	; Progress song counter
 	ld a,(song_length) 
@@ -112,8 +99,8 @@ play_song_loop:
 	jr nz, play_song_loop
 	ret
 
-song_length:
-	defb	2
+song_length: ; one less than the total number
+	defb	22
 song_address:
 	defb 0, 0
 song_current_note:
@@ -121,4 +108,27 @@ song_current_note:
 song_current_duration:
 	defb 0, 0
 song_notes: ; Song is note low byte, note high byte, duration
-	defb	noteC1B, noteC1A, noteC1DH, noteD1A, noteD1B, noteD1DH 
+	defb	noteC1B, noteC1A, noteC1DH
+	defb	noteCS1B, noteCS1A, noteCS1DH
+	defb	noteD1B, noteD1A, noteD1DH
+	defb	noteDS1B, noteDS1A, noteDS1DH
+	defb	noteE1B, noteE1A, noteE1DH
+	defb	noteF1B, noteF1A, noteF1DH
+	defb	noteFS1B, noteFS1A, noteFS1DH
+	defb	noteG1B, noteG1A, noteG1DH
+	defb	noteGS1B, noteGS1A, noteGS1DH
+	defb	noteA1B, noteA1A, noteA1DH
+	defb	noteAS1B, noteAS1A, noteAS1DH
+	defb	noteB1B, noteB1A, noteB1DH
+	defb	noteC1B, noteC1A, noteC1DQ
+	defb	noteCS1B, noteCS1A, noteCS1DQ
+	defb	noteD1B, noteD1A, noteD1DQ
+	defb	noteDS1B, noteDS1A, noteDS1DQ
+	defb	noteE1B, noteE1A, noteE1DQ
+	defb	noteF1B, noteF1A, noteF1DQ
+	defb	noteFS1B, noteFS1A, noteFS1DQ
+	defb	noteG1B, noteG1A, noteG1DQ
+	defb	noteGS1B, noteGS1A, noteGS1DQ
+	defb	noteA1B, noteA1A, noteA1DQ
+	defb	noteAS1B, noteAS1A, noteAS1DQ
+	defb	noteB1B, noteB1A, noteB1DQ
