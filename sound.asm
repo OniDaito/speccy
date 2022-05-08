@@ -86,7 +86,24 @@ play_song_loop:
 	ld de, (song_current_duration) ;(song_address_duration)
 	call 949
 
+	; Now advance
+	; Load the first note into the two bytes
+	inc hl
+	ld a,(hl)
+	ld (song_current_note), a
 	
+	; Second note byte
+	inc hl
+	ld a, (hl)
+	ld (song_current_note+1), a
+
+	; Load the duration two bytes
+	inc hl
+	ld a, (hl)
+	ld (song_current_duration), a
+	ld a, 0
+	ld (song_current_duration+1), a
+
 	; Progress song counter
 	ld a,(song_length) 
 	sub 1
@@ -96,7 +113,7 @@ play_song_loop:
 	ret
 
 song_length:
-	defb	1
+	defb	2
 song_address:
 	defb 0, 0
 song_current_note:
