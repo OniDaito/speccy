@@ -100,7 +100,7 @@ play_song_loop:
 	ret
 
 song_length: ; one less than the total number
-	defb	22
+	defb	44
 song_address:
 	defb 0, 0
 song_current_note:
@@ -108,6 +108,30 @@ song_current_note:
 song_current_duration:
 	defb 0, 0
 song_notes: ; Song is note low byte, note high byte, duration
+	defb	noteC0B, noteC0A, noteC0DH
+	defb	noteCS0B, noteCS0A, noteCS0DH
+	defb	noteD0B, noteD0A, noteD0DH
+	defb	noteDS0B, noteDS0A, noteDS0DH
+	defb	noteE0B, noteE0A, noteE0DH
+	defb	noteF0B, noteF0A, noteF0DH
+	defb	noteFS0B, noteFS0A, noteFS0DH
+	defb	noteG0B, noteG0A, noteG0DH
+	defb	noteGS0B, noteGS0A, noteGS0DH
+	defb	noteA0B, noteA0A, noteA0DH
+	defb	noteAS0B, noteAS0A, noteAS0DH
+	defb	noteB0B, noteB0A, noteB0DH
+	defb	noteC0B, noteC0A, noteC0DQ
+	defb	noteCS0B, noteCS0A, noteCS0DQ
+	defb	noteD0B, noteD0A, noteD0DQ
+	defb	noteDS0B, noteDS0A, noteDS0DQ
+	defb	noteE0B, noteE0A, noteE0DQ
+	defb	noteF0B, noteF0A, noteF0DQ
+	defb	noteFS0B, noteFS0A, noteFS0DQ
+	defb	noteG0B, noteG0A, noteG0DQ
+	defb	noteGS0B, noteGS0A, noteGS0DQ
+	defb	noteA0B, noteA0A, noteA0DQ
+	defb	noteAS0B, noteAS0A, noteAS0DQ
+	defb	noteB0B, noteB0A, noteB0DQ
 	defb	noteC1B, noteC1A, noteC1DH
 	defb	noteCS1B, noteCS1A, noteCS1DH
 	defb	noteD1B, noteD1A, noteD1DH
